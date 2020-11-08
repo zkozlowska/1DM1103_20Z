@@ -11,7 +11,6 @@ struct Macierz {
 void wczytaj(char nazwa[], struct Macierz *m) {
     FILE * fin = fopen(nazwa, "r");
     int i,j;
-    
     fscanf(fin, "%d", &m->r);
     fscanf(fin, "%d", &m->c);
 
@@ -21,14 +20,14 @@ void wczytaj(char nazwa[], struct Macierz *m) {
         }
     }
 }
-void wypisz(struct Macierz X) {
+void wypisz(struct Macierz m) {
     int i, j;
         printf("[ ");
-    for (i = 0; i < X.r; i++) {
-        for (j=0; j < X.c; j++) {
-            printf("%5.1f ", X.tab[i][j]);
+    for (i = 0; i < m.r; i++) {
+        for (j=0; j < m.c; j++) {
+            printf("%5.2f ", m.tab[i][j]);
         }
-        if (i < (X.r-1))
+        if (i < (m.r-1))
             printf("\n  ");
     }
         printf("]\n");
@@ -40,7 +39,7 @@ void zapisz(char nazwa[], struct Macierz m) {
     fprintf(fout, "%d\n%d\n", m.r, m.c);
     for (i = 0; i < m.r; i++) {
         for (j=0; j < m.c; j++) {
-            fprintf(fout, "%f\n", m.tab[i][j]);
+            fprintf(fout, "%f.\n", m.tab[i][j]);
         }
     }
     fclose(fout);
@@ -82,33 +81,6 @@ void sum(struct Macierz A, struct Macierz B, struct Macierz *X)
             {
                 p = A.tab[i][j] + B.tab[i][j];
                 X -> tab[i][j] = p;            
-            }
-        }
-    }    
-}
-
-void subtract(struct Macierz A, struct Macierz B, struct Macierz *X)
-{
-    int i,j;
-    float p;
-    X->c = A.c;
-    X->r = A.r;
-    if (A.r != B.r) 
-    {
-        printf("Nie można odejmować macierzy o różnych rozmiarach\n");
-    }
-    if (A.c != B.c)
-    {
-        printf("Nie można odejmować macierzy o różnych rozmiarach\n");
-    }
-    else
-    {
-        for (i = 0; i < A.r; i++)
-        {
-            for (j = 0; j < A.c; j++)
-            {
-                p = (A.tab[i][j]) - (B.tab[i][j]);
-                X -> tab[i][j] = p;
             }
         }
     }    
@@ -178,19 +150,6 @@ int main(int argc, char *argv[]) {
     {
         wczytaj(argv[3], &B);
         sum(A,B,&X);
-        if (argc == 5)
-        {
-            zapisz(argv[4], X);
-        }   else 
-            {
-                wypisz(X);
-            }
-    } 
-    
-    else if ( strcmp( argv[1], "subtract") == 0) 
-    {
-        wczytaj(argv[3], &B);
-        subtract(A,B,&X);
         if (argc == 5)
         {
             zapisz(argv[4], X);
