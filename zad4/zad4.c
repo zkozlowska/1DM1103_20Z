@@ -93,6 +93,7 @@ void najlepszy_przedmiot(student dane[100], int ile_rekordow) {
     for (i=0; i < ile_rekordow; i++) {
         pozycja = znajdz( dane[i].nazwa_przed, nazwa_przedmiotow, ile_przedmiotow );
         // if (pozycje >= 0)
+        sumy_wazonych_ocen[i] = 0;
         sumy_wazonych_ocen[pozycja] += dane[i].ocena;
         liczba_ocen[pozycja] = liczba_ocen[pozycja] +1;
         strcpy(kod_przedmiotow[pozycja] ,dane[i].kod_przed);
@@ -130,6 +131,7 @@ void najgorszy_przedmiot(student dane[100], int ile_rekordow) {
     for (i=0; i < ile_rekordow; i++) {
         pozycja = znajdz( dane[i].nazwa_przed, nazwa_przedmiotow, ile_przedmiotow );
         // if (pozycje >= 0)
+        sumy_wazonych_ocen[i] = 0;
         sumy_wazonych_ocen[pozycja] += dane[i].ocena;
         liczba_ocen[pozycja] = liczba_ocen[pozycja] +1;
         strcpy(kod_przedmiotow[pozycja] ,dane[i].kod_przed);
