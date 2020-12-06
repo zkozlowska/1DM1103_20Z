@@ -33,7 +33,6 @@ int main(int argc, char ** argv)
         printf("Liczba studentów: %d\n", ile_studentow(baza));
     }
     
-
     zapisz_baze(argv[1], baza);
     zwolnij(baza);
     return 0;
